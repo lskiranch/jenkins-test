@@ -1,9 +1,26 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
-      steps {
-        echo 'This is Building stage'
+    stage('Build/Linux') {
+      parallel {
+        stage('Build/Linux') {
+          steps {
+            echo 'This is Building stage'
+          }
+        }
+
+        stage('Build/Windows') {
+          steps {
+            echo 'It\'s windows build'
+          }
+        }
+
+        stage('Build/android') {
+          steps {
+            echo 'It\'s Android'
+          }
+        }
+
       }
     }
 
